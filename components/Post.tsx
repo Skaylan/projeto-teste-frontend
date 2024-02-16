@@ -213,7 +213,7 @@ export default function Post({content, id, owner_info, created_at, func}: post) 
           
         </div>
         {
-          // owner_info.id === userId ? <button onClick={handleDeleteButton} className="bg-red-400">apagar</button> : null 
+          owner_info.id === userId ? <button onClick={handleDeleteButton} className="bg-red-400">apagar</button> : null 
         }
       </div>
     </>

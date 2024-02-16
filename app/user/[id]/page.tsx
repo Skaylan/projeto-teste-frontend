@@ -5,6 +5,12 @@ import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 
+export interface userTypeInterface {
+  id: string;
+  descr: string;
+  created_at: Date;
+  updated_at: Date;
+}
 
 export interface paramType {
   params: { id: string };
@@ -19,6 +25,7 @@ export interface user {
 	id: string,
   email: string,
 	name: string,
+	user_type: userTypeInterface,
 	created_at: string,
 	updated_at: string
 }
@@ -45,30 +52,33 @@ export default function Page({ params }: paramType) {
 				const data = await res.json()
 				const { user } = data
 				setUser(user)
+				console.log(data)
 			}
 
 		} catch (error) {
 			console.error(error)
 		}
-		
 	
 	}
 
 	useEffect(() => {
-		if (!token) {
-			window.location.replace("/");
-		}
+		// if (!token) {
+		// 	window.location.replace("/");
+		// }
 		getUserData()
-	})
+	}, [])
 
   return (
     <>
 			<Header />
-      <main>
-        <h1>{user?.name}</h1>
-        <h1>{user?.email}</h1>
-        <h1>{user?.id}</h1>
-      </main>
+			<main className="bg-gray-100 min-h-screen flex items-center justify-center">
+				<div className="w-[300px] bg-white p-8 rounded shadow-lg">
+					{/* <p className="text-gray-600 mb-2">id: {user?.id}</p> */}
+					<h1 className="text-2xl font-bold mb-4">{user?.name}</h1>
+					<p className="text-gray-600 mb-2">Email: {user?.email}</p>
+					<p className="text-gray-600 mb-2">tipo: {user?.user_type.descr}</p>
+				</div>
+			</main>
     </>
   );
 }
