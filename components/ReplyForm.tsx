@@ -19,6 +19,11 @@ export default function ReplyForm(props: any) {
   const [userId, setUserId] = useState<string>('')
   const [replies, setReplies] = useState<reply[]>([])
   
+  useEffect(() => {
+    const userId = Cookies.get('userId')
+    setUserId(userId!)
+  
+  })
 
   function handleSubmitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -42,7 +47,6 @@ export default function ReplyForm(props: any) {
       return res.json()
     })
     .then(data => {
-      console.log(data)
       setReplies(oldReplies => [data.reply, ...oldReplies])
     })
     .catch(error => {
@@ -66,19 +70,12 @@ export default function ReplyForm(props: any) {
       })
       .then(data => {
         setReplies(data.replies)
-        console.log(data)
       })
       .catch(error => {
         console.error(error)
       })
     }
   }
-
-  useEffect(() => {
-    const userId = Cookies.get('userId')
-    setUserId(userId!)
-
-  })
 
   function handleOpenReplyButton() {
     setReplyIsOpen(!replyIsOpen)

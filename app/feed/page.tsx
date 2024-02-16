@@ -27,13 +27,15 @@ export default function Page() {
     })
     .then(data => {
       setPosts(data.posts)
-      console.log(data.posts)
       setLoading(false)
     })
   }
 
-
   useEffect(() => {
+    const token = Cookies.get('token')
+    if (!token) {
+      window.location.replace('/')
+    }
     getUserFeed()
   }, [callData])
 

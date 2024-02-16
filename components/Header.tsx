@@ -30,6 +30,7 @@ export default function Header() {
 						</div>
 						:
 						<div className="p-2 flex gap-2">
+							<a href="/register">Registrar</a>
 							<a href="/">Entrar</a>
 						</div>
 					}

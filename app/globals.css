@@ -9,6 +9,7 @@
   
 }
 
+
 *::-webkit-scrollbar,
 *::-webkit-scrollbar-thumb {
   width: 26px;
@@ -16,6 +17,7 @@
   background-clip: padding-box;
   border: 10px solid transparent;
   color: rgb(183, 198, 204);
+  overflow: overlay;
 }
 
 *::-webkit-scrollbar-thumb {        
