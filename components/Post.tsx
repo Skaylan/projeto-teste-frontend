@@ -21,7 +21,7 @@ export interface comment {
   id: string,
   comment: string,
   create_at: string
-  owner: user
+  owner: user,
 }
 
 export default function Post({content, id, owner_info, created_at, func}: post) {

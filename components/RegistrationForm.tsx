@@ -37,7 +37,7 @@ const RegistrationForm = () => {
       return res.json();
     }).then(data => {
       console.log(data);
-      window.location.replace('/login')
+      window.location.replace('/')
     })
   };
 

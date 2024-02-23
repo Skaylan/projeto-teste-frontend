@@ -1,5 +1,4 @@
 'use client'
-
 import Header from "@/components/Header";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
@@ -30,7 +29,7 @@ export interface user {
 	updated_at: string
 }
 
-export default function Page({ params }: paramType) {
+export default function Page() {
   const token = Cookies.get("token");
 	const [user, setUser] = useState<user | null>(null)
 	
@@ -62,9 +61,6 @@ export default function Page({ params }: paramType) {
 	}
 
 	useEffect(() => {
-		// if (!token) {
-		// 	window.location.replace("/");
-		// }
 		getUserData()
 	}, [])
 
