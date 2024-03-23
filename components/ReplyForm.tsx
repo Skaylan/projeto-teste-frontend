@@ -3,14 +3,9 @@
 import { useEffect, useState } from "react"
 import Cookies from "js-cookie"
 import { SendHorizonal } from "lucide-react"
+import { reply } from "./TypesAndInterfaces"
+import Image from "next/image"
 
-
-export interface reply {
-  id: string,
-  owner_id: string,
-  comment: string,
-  created_at: Date,
-}
 
 export default function ReplyForm(props: any) {
   const [replyIsOpen, setReplyIsOpen] = useState<boolean>(false)
@@ -20,10 +15,11 @@ export default function ReplyForm(props: any) {
   const [replies, setReplies] = useState<reply[]>([])
   
   useEffect(() => {
+    fetchCommetReplies()
     const userId = Cookies.get('userId')
     setUserId(userId!)
   
-  })
+  }, [])
 
   function handleSubmitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -70,6 +66,7 @@ export default function ReplyForm(props: any) {
       })
       .then(data => {
         setReplies(data.replies)
+        console.log("AQUI::>>>>", data.replies)
       })
       .catch(error => {
         console.error(error)
@@ -93,6 +90,9 @@ export default function ReplyForm(props: any) {
         <div className="w-[100%] flex gap-2">
           <button className="text-xs p-1 hover:bg-gray-200 rounded">like</button>
           <button className="text-xs p-1 hover:bg-gray-200 rounded" onClick={handleOpenReplyButton}>responder</button>
+          {
+            replies.length > 1 || replies.length === 0 ? <span className="text-sm text-slate-500">{replies.length} respostas</span> :<span className="text-sm text-slate-500">{replies.length} resposta</span>
+          }
         </div>
         {
           replyIsOpen ? 
@@ -102,7 +102,11 @@ export default function ReplyForm(props: any) {
               {
                 replies.length === 0 ? null : 
                 replies.map(reply => (
-                  <div key={reply.id} className="flex flex-col justify-center w-[100%] bg-gray-50">
+                  <div key={reply.id} className="flex flex-col justify-center w-[100%] bg-gray-50 gap-2">
+                    <div className="flex gap-2">
+                      <Image className="rounded-full" src={'https://placehold.co/25x25'} width={25} height={25} alt="avatar" />
+                      <span>{reply.owner.name}</span>
+                    </div>
                     <span className="text-sm">{reply.comment}</span>
                   </div>
                 ))

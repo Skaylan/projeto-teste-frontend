@@ -1,16 +1,14 @@
 "use client"
 
-import { commentView, postView, replyView } from "@/app/feed/page"
+
 import { MessageCircle, SendHorizonal, ThumbsUp } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 import ReplyForm from "./ReplyForm"
 import { convertDatetime } from "./utils"
 import Cookies from "js-cookie"
+import { commentView, propView } from "./TypesAndInterfaces"
 
-export interface propView {
-  post: postView
-}
 
 export default function NewPost({ post }: propView) {
   const [commentIsOpen, setCommentIsOpen] = useState<boolean>(false)

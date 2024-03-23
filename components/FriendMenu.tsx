@@ -1,17 +1,11 @@
 "use client"
 
-import { user } from "@/app/user/[id]/page";
 import { useEffect, useState } from "react"
 import Cookies from "js-cookie";
 import Image from "next/image";
+import { X } from "lucide-react";
+import { FriendType } from "./TypesAndInterfaces";
 
-export type FriendType = {
-  id: string,
-  user_id: string,
-  friend_id: string,
-  friend: user
-
-}
 
 export default function FriendMenu() {
   const [friends, setFriends] = useState<FriendType[]>([])
@@ -40,10 +34,15 @@ export default function FriendMenu() {
 
   return (
     <>
-      <div className="bg-white flex flex-col w-[300px] h-[300px] shadow-full rounded">
-        <div className="w-[100%] flex justify-center p-2">
-          <h3>Lista de amigos</h3>
-        </div>
+      <div className="bg-white flex flex-col w-[300px] h-[300px] ">
+        {/* <div className="w-[100%] flex justify-center p-2">
+          <div className="w-[85%] flex justify-center">
+            <h3>Lista de amigos</h3>
+          </div>
+          <div className="w-[15%]">
+            <button><X /></button>
+          </div>
+        </div> */}
         <div className="w-[100%] flex flex-col gap-1 p-2">
           {
             friendIsLoading ?

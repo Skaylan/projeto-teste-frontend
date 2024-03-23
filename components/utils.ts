@@ -18,3 +18,18 @@ export function convertDatetime(dateTimeString: Date) {
 
   return dataFormatada;
 }
+
+export const readFileAsBase64 = (file: any): Promise<string> => {
+  return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+          const base64String = reader.result as string;
+          const withoutPrefix = base64String.split(',')[1]; // Remove the "data:image/jpeg;base64," prefix
+          resolve(withoutPrefix);
+      };
+      reader.onerror = reject;
+      if (file) {
+          reader.readAsDataURL(file);
+      }
+  });
+};

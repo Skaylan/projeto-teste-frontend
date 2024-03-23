@@ -1,15 +1,18 @@
 "use client"
-import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
-import { user } from "../[id]/page";
 import Header from "@/components/Header";
+import { user } from "@/components/TypesAndInterfaces";
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+
 
 export default function Page() {
   const [user, setUser] = useState<user | null>(null)
-  const searchParams = useSearchParams();
+	const searchParams = useSearchParams()
 
   const getUserData = async () => {
     const userId = searchParams.get('user_id')
+		console.log(userId)
 		try {
 			const res = await fetch(`http://localhost:5000/api/get_user_by_id?user_id=${userId}`, {
 				method: 'GET',
@@ -36,7 +39,7 @@ export default function Page() {
 	}, [])
 
   return (
-    <>
+    <Suspense>
       <Header />
       <main className="bg-gray-100 min-h-screen flex items-center justify-center">
         <div className="w-[300px] bg-white p-8 rounded shadow-lg">
@@ -46,6 +49,6 @@ export default function Page() {
           <p className="text-gray-600 mb-2">tipo: {user?.user_type.descr}</p>
         </div>
       </main>
-  </>
+		</Suspense>
   )
 }

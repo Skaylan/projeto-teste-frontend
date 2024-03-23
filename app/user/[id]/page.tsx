@@ -3,34 +3,10 @@ import Header from "@/components/Header";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import { decoded, user } from "@/components/TypesAndInterfaces";
 
-export interface userTypeInterface {
-  id: string;
-  descr: string;
-  created_at: Date;
-  updated_at: Date;
-}
-
-export interface paramType {
-  params: { id: string };
-}
-
-export interface decoded {
-  email: string,
-	id: string
-}
-
-export interface user {
-	id: string,
-  email: string,
-	name: string,
-	user_type: userTypeInterface,
-	created_at: string,
-	updated_at: string
-}
 
 export default function Page() {
-  const token = Cookies.get("token");
 	const [user, setUser] = useState<user | null>(null)
 	
 	const getUserData = async () => {

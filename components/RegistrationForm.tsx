@@ -2,13 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
+import { userTypeInterface } from './TypesAndInterfaces';
 
-export interface userTypeInterface {
-  id: string
-  descr: string,
-  created_at: Date,
-  updated_at: Date
-}
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +12,6 @@ const RegistrationForm = () => {
     password: '',
     user_type: '',
   });
-  // const [selectUserType, setSelectUserType] = useState<string>('');
   const [userTypes, setUserTypes] = useState<userTypeInterface[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
@@ -64,8 +58,8 @@ const RegistrationForm = () => {
   return (
     <>
       <Header />
-      <div className="max-w-md mx-auto">
-        <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div className="max-w-md mx-auto pt-12">
+        <form onSubmit={handleSubmit} className="bg-white shadow-full rounded px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
               Nome completo
