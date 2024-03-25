@@ -10,14 +10,18 @@ export default function GroupSideBar() {
   return (
     <>
       <aside className="flex fixed flex-col gap-1 w-[250px] h-full top-[50px] p-2 shadow-2xl">
-        <div onClick={() => {router.replace('/feed')}} className="flex gap-2 items-center w-full h-12 hover:bg-gray-300 cursor-pointer p-2 rounded-md">
-          <Newspaper />
-          <h4>Seu feed</h4>
-        </div>
-        <div className="flex gap-2 items-center w-full h-12 hover:bg-gray-300 cursor-pointer p-2 rounded-md">
-          <UsersRound />
-          <h4>Seus Grupos</h4>
-        </div>
+        <Link href={'/group'}>
+          <div className="flex gap-2 items-center w-full h-12 hover:bg-gray-300 cursor-pointer p-2 rounded-md">
+            <Newspaper />
+            <h4>Feed dos grupos</h4>
+          </div>
+        </Link>
+        <Link href={'/group/my-groups'} >
+          <div className="flex gap-2 items-center w-full h-12 hover:bg-gray-300 cursor-pointer p-2 rounded-md">
+            <UsersRound />
+            <h4>Seus Grupos</h4>
+          </div>
+        </Link>
         <div className="flex gap-2 items-center w-full h-12 hover:bg-gray-300 cursor-pointer p-2 rounded-md">
           <Search />
           <h4>Procurar Grupos</h4>

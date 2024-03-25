@@ -6,10 +6,12 @@ import { CalendarDays, Film, ImageIcon, X } from "lucide-react"
 import { readFileAsBase64 } from "./utils"
 
 interface prop {
-  func: Function
+  func: Function,
+  isGroup?: boolean
+  groupId?: string
 }
 
-export default function PostForm({ func }: prop) {
+export default function PostForm({ func, isGroup, groupId }: prop) {
   const [content, setContent] = useState('')
   const [image, setImage] = useState<File | null>(null)
   const [imageBase64, setImageBase64] = useState<string>('')
@@ -23,37 +25,61 @@ export default function PostForm({ func }: prop) {
       'owner_id': id,
       'content': content,
       'image': imageBase64,
-      'has_image': false
+      'has_image': false,
+      'group_id': groupId
     }
 
     if (isImageUpload) {
       payload.has_image = true
     }
     
+    if (isGroup) {
+      fetch('http://localhost:5000/api/create_group_post', {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        func()
+        console.log(data)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+      
+    } else {
+      fetch('http://localhost:5000/api/create_post', {
+        method: "POST",
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        func()
+        // console.log(data)
+      })
+      .catch(error => {
+        console.error(error)
+      })
 
-    fetch('http://localhost:5000/api/create_post', {
-      method: "POST",
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(res => {
-      return res.json()
-    })
-    .then(data => {
-      // console.log(data)
-    })
-    .catch(error => {
-      console.error(error)
-    })
+    }
+
     setContent('')
-    func()
     setIsImageUpload(false)
     setImage(null)
     setImageBase64('')
-
+    
   }
 
   function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {

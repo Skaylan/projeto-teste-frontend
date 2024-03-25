@@ -1,4 +1,10 @@
-
+export interface group {
+  id: string;
+  name: string;
+  descr: string;
+  created_at: Date;
+  updated_at: Date;
+}
 
 export interface userTypeInterface {
   id: string;

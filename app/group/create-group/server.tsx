@@ -20,7 +20,7 @@ export default async function handleCreateGroupForm(
     }),
   });
 
-  if (!request.ok) {
+  if (request.status !== 201) {
     throw new Error('Failed to create group');
   }
 

@@ -67,7 +67,7 @@ export default function Header() {
 								isProfileModalOpen ?
 								<div className="absolute flex flex-col gap-1 w-[200px] h-[200px] top-[55px] left-[85%] p-2 shadow-full">
 									<Link className="flex gap-2 hover:bg-gray-300 cursor-pointer p-2 rounded-md" href={`/user/${userId}`}><User /> Perfil</Link>
-									<Link className="flex gap-2 hover:bg-gray-300 cursor-pointer p-2 rounded-md" href="/logout"><Bolt /> Configurações</Link>
+									<Link className="flex gap-2 hover:bg-gray-300 cursor-pointer p-2 rounded-md" href="#"><Bolt /> Configurações</Link>
 									<Link className="flex gap-2 hover:bg-gray-300 cursor-pointer p-2 rounded-md" href="/logout"><LogOut /> Sair</Link>
 								</div>
 								:

@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 
 export default function Page() {
   const [user, setUser] = useState<user | null>(null)
-	const searchParams = useSearchParams()
+  const searchParams = useSearchParams()
 
   const getUserData = async () => {
     const userId = searchParams.get('user_id')

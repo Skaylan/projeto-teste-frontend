@@ -87,7 +87,7 @@ export default function Page() {
     <>
       <Header />
       <AsideMenu />
-      <main className="w-[100%] flex flex-col gap-10 items-center pt-16">
+      <main className="w-full flex flex-col gap-10 items-center pt-16">
         {
           friendMenuIsOpen ?
           <div className="w-[300px] h-[340px] fixed flex flex-col items-start pt-2 top-[43%] left-[77%] shadow-full rounded-md">

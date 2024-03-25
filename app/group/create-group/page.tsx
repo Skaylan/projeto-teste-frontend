@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState, useRef, use } from "react"
 import handleCreateGroupForm from "./server";
 import Cookies from "js-cookie";
+import GroupSideBar from "@/components/GroupSideBar";
 
 export default function Page() {
 
@@ -67,13 +68,14 @@ export default function Page() {
     e.preventDefault()
     const promise = Promise.resolve(handleCreateGroupForm(groupName, groupDescription, Cookies.get('userId')!, tags, imageBase64))
     promise.then((value) => {
-      console.log(value.data)
+      window.location.href = `/group/${value.group_id}`
     })
   }
   
   return (
     <main className="w-full h-auto flex flex-col">
       <Header />
+      <GroupSideBar />
       <section className="w-full flex flex-col items-center justify-center pt-20">
         <form onSubmit={handleSubmit} className="w-[600px] h-auto flex flex-col items-center justify-center gap-2">
 
